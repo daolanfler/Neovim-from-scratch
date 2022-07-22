@@ -1,7 +1,7 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 
--- vim.g.nvim_tree_icons = 
+-- vim.g.nvim_tree_icons =
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
@@ -15,7 +15,7 @@ end
 
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
-nvim_tree.setup {
+nvim_tree.setup({
   disable_netrw = true,
   hijack_netrw = true,
   open_on_setup = false,
@@ -66,9 +66,9 @@ nvim_tree.setup {
     mappings = {
       custom_only = false,
       list = {
-        { key = { "l", "<CR>", "o" }, cb = tree_cb "edit" },
-        { key = "h", cb = tree_cb "close_node" },
-        { key = "v", cb = tree_cb "vsplit" },
+        { key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
+        { key = "h", cb = tree_cb("close_node") },
+        { key = "v", cb = tree_cb("vsplit") },
       },
     },
     number = false,
@@ -94,9 +94,9 @@ nvim_tree.setup {
       resize_window = true,
       quit_on_open = false,
       window_picker = {
-        enable = true
-      }
-    }
+        enable = true,
+      },
+    },
   },
   renderer = {
     icons = {
@@ -126,9 +126,9 @@ nvim_tree.setup {
         file = true,
         folder_arrow = true,
         -- tree_width = 30,
-      }
+      },
     },
-    root_folder_modifier = ':t',
+    root_folder_modifier = ":t",
     highlight_git = true,
-  }
-}
+  },
+})
