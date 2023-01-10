@@ -3,6 +3,10 @@ if not status_ok then
   return
 end
 
+--[[ local lsp = require("lsp-zero") ]]
+--[[ lsp.preset("recommended") ]]
+--[[ lsp.setup(); ]]
+
 require "user.lsp.lsp-installer"
 require("user.lsp.handlers").setup()
 require "user.lsp.null-ls"
