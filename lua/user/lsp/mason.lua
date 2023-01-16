@@ -7,7 +7,7 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
-  "volar"
+  --[[ "volar" ]]
 }
 
 local settings = {
