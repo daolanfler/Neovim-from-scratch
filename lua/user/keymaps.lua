@@ -45,7 +45,6 @@ keymap("n", "<leader>s", "\"_s", opts)
 keymap("n", "<leader>d", "\"_d", opts)
 keymap("n", "<leader>c", "\"_c", opts)
 keymap("n", "<leader>y", "\"+y", opts)
-keymap("n", "<leader>y", "\"+y", opts)
 
 -- Insert --
 -- Press jk fast to enter

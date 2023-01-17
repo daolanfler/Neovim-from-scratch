@@ -89,5 +89,5 @@ lualine.setup({
     lualine_z = {},
   },
   tabline = {},
-  extensions = { "toggleterm" },
+  -- extensions = { "toggleterm" },
 })
