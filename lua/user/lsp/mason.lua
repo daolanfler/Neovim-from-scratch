@@ -7,8 +7,8 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
-  "rust_analyzer"
-  --[[ "volar" ]]
+  "rust_analyzer",
+  "volar"
 }
 
 local settings = {
