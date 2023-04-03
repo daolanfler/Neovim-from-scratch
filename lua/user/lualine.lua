@@ -74,7 +74,14 @@ lualine.setup({
   sections = {
     lualine_q = { mode },
     lualine_b = { branch, diagnostics },
-    lualine_c = {},
+    lualine_c = {
+      -- https://github.com/nvim-lualine/lualine.nvim/issues/271
+      {
+        "filename",
+        path = 1,
+        file_status = true
+      }
+    },
     -- lualine_x = { "encoding", "fileformat", "filetype" },
     lualine_x = { diff, spaces, "encoding", filetype },
     lualine_y = { location },
