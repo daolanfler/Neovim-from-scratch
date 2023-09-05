@@ -15,6 +15,5 @@ require "user.gitsigns"
 
 require "user.bufferline"
 require "user.toggleterm"
-require "user.undotree"
 require "user.indent_blankline"
 require "user.fugitive"

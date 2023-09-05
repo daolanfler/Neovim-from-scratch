@@ -42,7 +42,6 @@ return { -- My plugins here
 	-- { "nvim-treesitter/playground" },
 
 	"JoosepAlviste/nvim-ts-context-commentstring",
-	"mbbill/undotree", -- Git
 	"lewis6991/gitsigns.nvim",
 
 	{
