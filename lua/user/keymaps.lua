@@ -81,7 +81,7 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Nvimtree
-keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+-- keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>f", ":Format<cr>", opts)
 keymap("n", "<leader>g", "<cmd>Telescope live_grep<cr>", opts)
 keymap("n", "<C-p>", "<cmd>Telescope find_files<cr>", opts)
