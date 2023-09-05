@@ -7,7 +7,6 @@ return {                      -- My plugins here
   "kyazdani42/nvim-tree.lua", --
   "akinsho/bufferline.nvim",  --
   "moll/vim-bbye",            --
-  "akinsho/toggleterm.nvim",  -- Colorschemes
 
   -- lunarvim/colorschemes, -- A bunch of colorschemes you can try out
   "lunarvim/darkplus.nvim",
@@ -26,6 +25,7 @@ return {                      -- My plugins here
   "williamboman/mason-lspconfig.nvim",
   "tamago324/nlsp-settings.nvim",        -- language server settings defined in json for
   "jose-elias-alvarez/null-ls.nvim",     -- for formatters and linters
+
   "lukas-reineke/indent-blankline.nvim", -- Telescope
   "nvim-telescope/telescope.nvim",       -- Treesitter
 

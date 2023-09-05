@@ -46,7 +46,7 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
-if not vim.g.is_mac then
+if not vim.fn.has('macunix') then
   -- for wsl clipboard
   vim.g.clipboard = {
     name = 'WslClipboard',

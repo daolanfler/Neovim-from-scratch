@@ -14,6 +14,5 @@ require "user.comment"
 require "user.gitsigns"
 
 require "user.bufferline"
-require "user.toggleterm"
 require "user.indent_blankline"
 require "user.fugitive"
