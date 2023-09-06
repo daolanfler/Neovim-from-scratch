@@ -10,25 +10,28 @@ return {                      -- My plugins here
 
   -- lunarvim/colorschemes, -- A bunch of colorschemes you can try out
   "lunarvim/darkplus.nvim",
-  "ellisonleao/gruvbox.nvim",            -- cmp plugins
-  "hrsh7th/nvim-cmp",                    -- The completion plugin
-  "hrsh7th/cmp-buffer",                  -- buffer completions
-  "hrsh7th/cmp-path",                    -- path completions
-  "hrsh7th/cmp-cmdline",                 -- cmdline completions
-  "saadparwaiz1/cmp_luasnip",            -- snippet completions
-  "hrsh7th/cmp-nvim-lsp",                -- snippets
-  "L3MON4D3/LuaSnip",                    -- snippet engine
-  "rafamadriz/friendly-snippets",        -- a bunch of snippets to use
+  "ellisonleao/gruvbox.nvim",     -- cmp plugins
+  "hrsh7th/nvim-cmp",             -- The completion plugin
+  "hrsh7th/cmp-buffer",           -- buffer completions
+  "hrsh7th/cmp-path",             -- path completions
+  "hrsh7th/cmp-cmdline",          -- cmdline completions
+  "saadparwaiz1/cmp_luasnip",     -- snippet completions
+  "hrsh7th/cmp-nvim-lsp",         -- snippets
+  "L3MON4D3/LuaSnip",             -- snippet engine
+  "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+
   -- LSP
   "neovim/nvim-lspconfig",               -- enable LSP
   "williamboman/mason.nvim",             -- simple to use language server installer
   "williamboman/mason-lspconfig.nvim",
-  "tamago324/nlsp-settings.nvim",        -- language server settings defined in json for
+  "tamago324/nlsp-settings.nvim",        -- language server settings defined in json or yaml
+
   "jose-elias-alvarez/null-ls.nvim",     -- for formatters and linters
 
-  "lukas-reineke/indent-blankline.nvim", -- Telescope
-  "nvim-telescope/telescope.nvim",       -- Treesitter
+  "lukas-reineke/indent-blankline.nvim", -- indent blankline for decoration
+  "nvim-telescope/telescope.nvim",       -- Telescope
 
+  -- Treesitter, ast syntax-highlighting
   {
     "nvim-treesitter/nvim-treesitter",
     build = function()
@@ -41,13 +44,18 @@ return {                      -- My plugins here
 
   -- { "nvim-treesitter/playground" },
 
-  "JoosepAlviste/nvim-ts-context-commentstring",
+  -- "JoosepAlviste/nvim-ts-context-commentstring",
+
   "lewis6991/gitsigns.nvim",
 
   {
     "sindrets/diffview.nvim",
     dependencies = "nvim-lua/plenary.nvim",
+    event = "VeryLazy",
   },
 
-  "tpope/vim-fugitive", -- Automatically set up your configuration after cloning packer.nvim
+  {
+    "tpope/vim-fugitive",
+    event = "VeryLazy",
+  },
 }
