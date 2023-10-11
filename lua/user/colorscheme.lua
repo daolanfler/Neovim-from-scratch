@@ -5,7 +5,7 @@
 --[[   colorscheme default ]]
 --[[   set background=dark ]]
 --[[ endtry ]]
---[[ ]] 
+--[[ ]]
 
 
 function ColorMyPencils(color)

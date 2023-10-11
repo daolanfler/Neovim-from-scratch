@@ -1,12 +1,12 @@
-return {                      -- My plugins here
-  "nvim-lua/popup.nvim",      -- An implementation of the Popup API from vim in Neovim
-  "nvim-lua/plenary.nvim",    -- Useful lua functions used ny lots of plugins
-  "windwp/nvim-autopairs",    -- Autopairs, integrates with both cmp and treesitter
-  "numToStr/Comment.nvim",    -- Easily comment stuff
+return {                   -- My plugins here
+  "nvim-lua/popup.nvim",   -- An implementation of the Popup API from vim in Neovim
+  "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
+  "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
+  "numToStr/Comment.nvim", -- Easily comment stuff
 
-  "kyazdani42/nvim-tree.lua", --
-  "akinsho/bufferline.nvim",  --
-  "moll/vim-bbye",            --
+  -- "kyazdani42/nvim-tree.lua", -- use Neo tree instead
+  "akinsho/bufferline.nvim", --
+  "moll/vim-bbye",           --
 
   -- lunarvim/colorschemes, -- A bunch of colorschemes you can try out
   "lunarvim/darkplus.nvim",
@@ -21,15 +21,23 @@ return {                      -- My plugins here
   "rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
   -- LSP
-  "neovim/nvim-lspconfig",               -- enable LSP
-  "williamboman/mason.nvim",             -- simple to use language server installer
+  "neovim/nvim-lspconfig",           -- enable LSP
+  "williamboman/mason.nvim",         -- simple to use language server installer
   "williamboman/mason-lspconfig.nvim",
-  "tamago324/nlsp-settings.nvim",        -- language server settings defined in json or yaml
+  "tamago324/nlsp-settings.nvim",    -- language server settings defined in json or yaml
 
-  "jose-elias-alvarez/null-ls.nvim",     -- for formatters and linters
+  "jose-elias-alvarez/null-ls.nvim", -- for formatters and linters
 
-  "lukas-reineke/indent-blankline.nvim", -- indent blankline for decoration
-  "nvim-telescope/telescope.nvim",       -- Telescope
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    opts = {
+      indent = {
+        char = '┊',
+      }
+    }
+  },                               -- indent blankline for decoration
+  "nvim-telescope/telescope.nvim", -- Telescope
 
   -- Treesitter, ast syntax-highlighting
   {
