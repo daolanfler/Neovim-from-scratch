@@ -10,7 +10,7 @@ return {
   keys = {
     { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "Neotree" },
   },
-  config = {
+  opts = {
     filesystem = {
       follow_current_file = {
         enabled = true,

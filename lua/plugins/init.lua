@@ -36,8 +36,15 @@ return {                   -- My plugins here
         char = '┊',
       }
     }
-  },                               -- indent blankline for decoration
-  "nvim-telescope/telescope.nvim", -- Telescope
+  },
+
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.4',
+    -- or                              , branch = '0.1.x',
+    dependencies = { 'nvim-lua/plenary.nvim' }
+  },
+
 
   -- Treesitter, ast syntax-highlighting
   {
@@ -48,6 +55,16 @@ return {                   -- My plugins here
       }))
     end,
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+  },
+
+  {
+    's1n7ax/nvim-window-picker',
+    name = 'window-picker',
+    event = 'VeryLazy',
+    version = '2.*',
+    config = function()
+      require 'window-picker'.setup()
+    end,
   },
 
   -- { "nvim-treesitter/playground" },
