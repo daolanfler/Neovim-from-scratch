@@ -4,7 +4,7 @@ return {                   -- My plugins here
   "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
 
   -- "kyazdani42/nvim-tree.lua", -- use Neo tree instead
-  "moll/vim-bbye",           --
+  "moll/vim-bbye", --
 
   -- lunarvim/colorschemes, -- A bunch of colorschemes you can try out
   "lunarvim/darkplus.nvim",
@@ -74,4 +74,8 @@ return {                   -- My plugins here
     dependencies = "nvim-lua/plenary.nvim",
     event = "VeryLazy",
   },
+
+  {
+    "ThePrimeagen/harpoon"
+  }
 }
