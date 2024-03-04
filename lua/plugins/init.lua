@@ -17,6 +17,7 @@ return {                   -- My plugins here
   "hrsh7th/cmp-nvim-lsp",         -- snippets
   "L3MON4D3/LuaSnip",             -- snippet engine
   "rafamadriz/friendly-snippets", -- a bunch of snippets to use
+  "folke/which-key.nvim",
 
   -- LSP
   "neovim/nvim-lspconfig",           -- enable LSP
