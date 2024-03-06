@@ -1,7 +1,7 @@
+-- You don't necessaril need to specify the plugin name, if you've already put it in `./lua/plugins` folder
 return {                   -- My plugins here
   "nvim-lua/popup.nvim",   -- An implementation of the Popup API from vim in Neovim
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-  "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
 
   -- "kyazdani42/nvim-tree.lua", -- use Neo tree instead
   "moll/vim-bbye", --
@@ -39,7 +39,7 @@ return {                   -- My plugins here
 
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
+    -- tag = '0.1.4',
     -- or                              , branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
