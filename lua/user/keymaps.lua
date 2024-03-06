@@ -80,5 +80,3 @@ vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("n", "<leader>f", ":Format<CR>", opts)
 
 
--- Set highlight on search, but clear on pressing <Esc> in normal mode
-vim.keymap.set("n", '<Esc>', '<cmd>nohlsearch<CR>')

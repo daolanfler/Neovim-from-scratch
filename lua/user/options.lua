@@ -35,6 +35,9 @@ local options = {
   guifont = "monospace:h17",               -- the font used in graphical neovim applications
   breakindent = true,
 }
+--
+-- Set highlight on search, but clear on pressing <Esc> in normal mode
+vim.keymap.set("n", '<Esc>', '<cmd>nohlsearch<CR>')
 
 vim.opt.shortmess:append "c"
 
