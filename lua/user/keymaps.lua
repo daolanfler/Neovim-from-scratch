@@ -1,8 +1,13 @@
-local opts = { noremap = true, silent = true }
+local opts = {
+	noremap = true,
+	silent = true
+}
 
-local term_opts = { silent = true }
+local term_opts = {
+	silent = true
+}
 
---Remap space as leader key
+-- Remap space as leader key
 vim.keymap.set("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -78,5 +83,3 @@ vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 vim.keymap.set("n", "<leader>f", ":Format<CR>", opts)
-
-

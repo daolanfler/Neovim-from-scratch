@@ -7,10 +7,9 @@ local servers = {
 	"bashls",
 	"jsonls",
 	"yamlls",
-  "rust_analyzer",
-  "volar",
-  "gopls"
-}
+	"rust_analyzer",
+	"volar",
+	"gopls" }
 
 local settings = {
 	ui = {
@@ -18,17 +17,17 @@ local settings = {
 		icons = {
 			package_installed = "◍",
 			package_pending = "◍",
-			package_uninstalled = "◍",
-		},
+			package_uninstalled = "◍"
+		}
 	},
 	log_level = vim.log.levels.INFO,
-	max_concurrent_installers = 4,
+	max_concurrent_installers = 4
 }
 
 require("mason").setup(settings)
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
-	automatic_installation = true,
+	automatic_installation = true
 })
 
 local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
@@ -41,7 +40,7 @@ local opts = {}
 for _, server in pairs(servers) do
 	opts = {
 		on_attach = require("user.lsp.handlers").on_attach,
-		capabilities = require("user.lsp.handlers").capabilities,
+		capabilities = require("user.lsp.handlers").capabilities
 	}
 
 	server = vim.split(server, "@")[1]

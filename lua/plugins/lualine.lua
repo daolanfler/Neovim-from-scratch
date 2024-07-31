@@ -16,11 +16,11 @@ return {
 			sections = { "error", "warn" },
 			symbols = {
 				error = " ",
-				warn = " ",
+				warn = " "
 			},
 			colored = false,
 			update_in_insert = false,
-			always_visible = true,
+			always_visible = true
 		}
 
 		local diff = {
@@ -29,33 +29,33 @@ return {
 			symbols = {
 				added = " ",
 				modified = " ",
-				removed = " ",
+				removed = " "
 			}, -- changes diff symbols
-			cond = hide_in_width,
+			cond = hide_in_width
 		}
 
 		local mode = {
 			"mode",
 			fmt = function(str)
 				return "-- " .. str .. " --"
-			end,
+			end
 		}
 
 		local filetype = {
 			"filetype",
 			icons_enabled = false,
-			icon = nil,
+			icon = nil
 		}
 
 		local branch = {
 			"branch",
 			icons_enabled = true,
-			icon = "",
+			icon = ""
 		}
 
 		local location = {
 			"location",
-			padding = 0,
+			padding = 0
 		}
 
 		-- cool function for progress
@@ -78,14 +78,14 @@ return {
 				theme = "gruvbox",
 				component_separators = {
 					left = "",
-					right = "",
+					right = ""
 				},
 				section_separators = {
 					left = "",
-					right = "",
+					right = ""
 				},
 				disabled_filetypes = { "dashboard", "NeoTree", "Outline" },
-				always_divide_middle = true,
+				always_divide_middle = true
 			},
 			sections = {
 				lualine_q = { mode },
@@ -94,13 +94,12 @@ return {
 					{
 						"filename",
 						path = 1,
-						file_status = true,
-					},
-				},
+						file_status = true
+					} },
 				-- lualine_x = { "encoding", "fileformat", "filetype" },
 				lualine_x = { diff, spaces, "encoding", filetype },
 				lualine_y = { location },
-				lualine_z = { "progress" },
+				lualine_z = { "progress" }
 			},
 			inactive_sections = {
 				lualine_a = {},
@@ -108,10 +107,10 @@ return {
 				lualine_c = { "filename" },
 				lualine_x = { "location" },
 				lualine_y = {},
-				lualine_z = {},
+				lualine_z = {}
 			},
-			tabline = {},
+			tabline = {}
 			-- extensions = { "toggleterm" },
 		})
-	end,
+	end
 }

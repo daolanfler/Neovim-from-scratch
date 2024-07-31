@@ -1,7 +1,7 @@
 return {
 	"ray-x/lsp_signature.nvim",
 	event = "VeryLazy",
-  lazy = false,
+	lazy = false,
 	opts = {},
 	config = function(_, opts)
 		require("lsp_signature").setup(opts)
@@ -13,5 +13,5 @@ return {
 		-- vim.keymap.set({ "n" }, "<Leader>k", function()
 		-- 	vim.lsp.buf.signature_help()
 		-- end, { silent = true, noremap = true, desc = "toggle signature" })
-	end,
+	end
 }

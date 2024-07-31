@@ -1,5 +1,5 @@
 local opts = {
-   filetypes = {'vue'}
+	filetypes = { 'vue' }
 }
 
 return opts
