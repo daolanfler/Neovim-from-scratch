@@ -49,8 +49,9 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
-if not vim.fn.has('macunix') then
+if vim.fn.has('wsl') then
 	-- for wsl clipboard
+	-- or see here https://www.reddit.com/r/neovim/comments/1byy8lu/copying_to_the_windows_clipboard_from_wsl2/ 
 	vim.g.clipboard = {
 		name = 'WslClipboard',
 		copy = {
