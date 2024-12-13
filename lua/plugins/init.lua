@@ -19,7 +19,6 @@ return {                                               -- My plugins here
 	"williamboman/mason.nvim",                         -- simple to use language server installer
 	"williamboman/mason-lspconfig.nvim",
 	"tamago324/nlsp-settings.nvim",                    -- language server settings defined in json or yaml
-
 	"jose-elias-alvarez/null-ls.nvim",                 -- for formatters and linters
 	{
 		"lukas-reineke/indent-blankline.nvim",
@@ -29,12 +28,14 @@ return {                                               -- My plugins here
 				char = '┊'
 			}
 		}
-	}, {
-	'nvim-telescope/telescope.nvim',
-	-- tag = '0.1.4',
-	-- or                              , branch = '0.1.x',
-	dependencies = { 'nvim-lua/plenary.nvim' }
-}, -- Treesitter, ast syntax-highlighting
+	},
+	{
+		'nvim-telescope/telescope.nvim',
+		-- tag = '0.1.4',
+		-- or                              , branch = '0.1.x',
+		dependencies = { 'nvim-lua/plenary.nvim' }
+	},
+	-- Treesitter, ast syntax-highlighting
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = function()
@@ -43,21 +44,27 @@ return {                                               -- My plugins here
 			}))
 		end,
 		dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" }
-	}, {
-	's1n7ax/nvim-window-picker',
-	name = 'window-picker',
-	event = 'VeryLazy',
-	version = '2.*',
-	config = function()
-		require 'window-picker'.setup()
-	end
-}, -- { "nvim-treesitter/playground" },
+	},
+	{
+		's1n7ax/nvim-window-picker',
+		name = 'window-picker',
+		event = 'VeryLazy',
+		version = '2.*',
+		config = function()
+			require 'window-picker'.setup()
+		end
+	},
+	-- { "nvim-treesitter/playground" },
 	-- "JoosepAlviste/nvim-ts-context-commentstring",
 	{
 		"sindrets/diffview.nvim",
 		dependencies = "nvim-lua/plenary.nvim",
 		event = "VeryLazy"
-	}, { "ThePrimeagen/harpoon" } -- {
+	},
+	{
+		"ThePrimeagen/harpoon"
+	},
+	-- {
 	--   "iamcco/markdown-preview.nvim",
 	--   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 	--   build = "cd app && npm install",
