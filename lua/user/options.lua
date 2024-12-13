@@ -49,6 +49,17 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
 
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		local fo = vim.opt_local.formatoptions
+		fo:remove("c")
+		fo:remove("r")
+		fo:remove("o")
+	end,
+})
+
+
 if vim.fn.has('wsl') then
 	-- for wsl clipboard
 	-- or see here https://www.reddit.com/r/neovim/comments/1byy8lu/copying_to_the_windows_clipboard_from_wsl2/ 
