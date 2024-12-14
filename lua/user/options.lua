@@ -59,19 +59,35 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
+local is_wsl = vim.fn.has("wsl") == 1
 
-if vim.fn.has('wsl') then
+if is_wsl then
 	-- for wsl clipboard
 	-- or see here https://www.reddit.com/r/neovim/comments/1byy8lu/copying_to_the_windows_clipboard_from_wsl2/ 
+	-- 下面这个配置中文乱码
+	-- vim.g.clipboard = {
+	-- 	name = 'WslClipboard',
+	-- 	copy = {
+	-- 		["+"] = "clip.exe",
+	-- 		["*"] = "clip.exe"
+	-- 	},
+	-- 	paste = {
+	-- 		["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+	-- 		["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
+	-- 	},
+	-- 	cache_enabled = 0
+	-- },
+
+	-- https://www.reddit.com/r/neovim/comments/10nfjjd/how_to_install_win32yank_for_using_neovim_with_wsl/ 
 	vim.g.clipboard = {
 		name = 'WslClipboard',
 		copy = {
-			["+"] = "clip.exe",
-			["*"] = "clip.exe"
+			["+"] = "win32yank.exe -i --crlf",
+			["*"] = "win32yank.exe -i --crlf"
 		},
 		paste = {
-			["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-			["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
+			["+"] = 'win32yank.exe -o --lf',
+			["*"] = 'win32yank.exe -o --lf'
 		},
 		cache_enabled = 0
 	}
