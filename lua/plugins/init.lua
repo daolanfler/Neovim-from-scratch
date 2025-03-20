@@ -19,7 +19,6 @@ return {                                               -- My plugins here
 	"williamboman/mason.nvim",                         -- simple to use language server installer
 	"williamboman/mason-lspconfig.nvim",
 	"tamago324/nlsp-settings.nvim",                    -- language server settings defined in json or yaml
-	"jose-elias-alvarez/null-ls.nvim",                 -- for formatters and linters
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
