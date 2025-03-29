@@ -1,17 +1,18 @@
-# Neovim from scratch
+# Neovim Config
 
-## Try out this config
+> forked from [LunarVim's Neovim-from-scratch](https://github.com/LunarVim/Neovim-from-scratch)
 
-Make sure to remove or move your current `nvim` directory
+## Install
+
+Make sure to backup your current (if exists) `nvim` directory
 
 ```
-git clone -b me-16-toggleterm git@github.com:daolanfler/Neovim-from-scratch.git ~/.config/nvim
+git clone -b main git@github.com:daolanfler/Neovim-from-scratch.git ~/.config/nvim
 ```
 
-Run `nvim` and wait for the plugins to be installed 
+Run `nvim` and wait for the plugins to be installed
 
-**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim) 
-
+**NOTE** (You will notice treesitter pulling in a bunch of parsers the next time you open Neovim)
 
 each video will be associated with a branch so checkout the one you are interested in
 
@@ -29,30 +30,30 @@ So let's fix that
 
 First we'll fix copy/paste
 
-- On mac `pbcopy` should be builtin
+-   On mac `pbcopy` should be builtin
 
-- On Ubuntu
+-   On Ubuntu
 
-  ```
-  sudo apt install xsel
-  ```
+    ```
+    sudo apt install xsel
+    ```
 
-- On Arch Linux
+-   On Arch Linux
 
-  ```
-  sudo pacman -S xsel
-  ```
+    ```
+    sudo pacman -S xsel
+    ```
 
 Next we need to install python support (node is optional)
 
-- Neovim python support
+-   Neovim python support
 
-  ```
-  pip install pynvim
-  ```
+    ```
+    pip install pynvim
+    ```
 
-- Neovim node support
+-   Neovim node support
 
-  ```
-  npm i -g neovim
-  ```
+    ```
+    npm i -g neovim
+    ```
