@@ -38,8 +38,8 @@ vim.keymap.set("n", "<S-l>", ":bnext<CR>", opts)
 vim.keymap.set("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Move text up and down
-vim.keymap.set("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-vim.keymap.set("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+vim.keymap.set("n", "<A-j>", "<Esc>:m .+1<CR>==", opts)
+vim.keymap.set("n", "<A-k>", "<Esc>:m .-2<CR>==", opts)
 
 -- Better copy paste
 vim.keymap.set("n", "<leader>x", "\"_x", opts)
@@ -71,8 +71,8 @@ vim.keymap.set("v", "<A-k>", ":m .-2<CR>==", opts)
 -- Visual Block --
 -- Move text up and down
 vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
-vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
