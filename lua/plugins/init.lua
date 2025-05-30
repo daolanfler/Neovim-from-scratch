@@ -1,3 +1,24 @@
+local function set_telescope_highlights_for_light()
+  vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#ffffff", fg = "#000000" })
+  vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "#ffffff", fg = "#cccccc" })
+  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#eeeeee", fg = "#000000" })
+  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "#eeeeee", fg = "#cccccc" })
+  vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#ddddee", fg = "#000000" })
+end
+
+
+local function set_telescope_highlights_for_dark()
+  vim.api.nvim_set_hl(0, "TelescopeNormal",       { bg = "#1e1e1e", fg = "#d4d4d4" })  -- 主窗口背景
+  vim.api.nvim_set_hl(0, "TelescopeBorder",       { bg = "#1e1e1e", fg = "#3f3f46" })  -- 边框
+  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#2d2d30", fg = "#d4d4d4" })  -- 输入框背景
+  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "#2d2d30", fg = "#3f3f46" })
+  vim.api.nvim_set_hl(0, "TelescopePromptTitle",  { fg = "#ffffff", bg = "#007acc", bold = true }) -- 标题
+  vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bg = "#007acc", bold = true })
+  vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bg = "#007acc", bold = true })
+  vim.api.nvim_set_hl(0, "TelescopeSelection",    { bg = "#264f78", fg = "#ffffff" })  -- 当前选中项
+end
+
+
 -- You don't necessaril need to specify the plugin name, if you've already put it in `./lua/plugins` folder
 return {                                               -- My plugins here
 	"nvim-lua/popup.nvim",                             -- An implementation of the Popup API from vim in Neovim
@@ -81,5 +102,37 @@ return {                                               -- My plugins here
 				-- Configuration here, or leave empty to use defaults
 			})
 		end
+	},
+	{
+		"projekt0n/github-nvim-theme",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("github-theme").setup({
+				options = {
+					transparent = false,
+				}
+			})
+		end,
+	},
+	{
+		"f-person/auto-dark-mode.nvim",
+		lazy = false,
+		config = function()
+			require("auto-dark-mode").setup({
+				update_interval = 1000,
+				set_dark_mode = function()
+					vim.opt.background = "dark"
+					vim.cmd("colorscheme darkplus")
+					set_telescope_highlights_for_dark()
+				end,
+				set_light_mode = function()
+					vim.opt.background = "light"
+					vim.cmd("colorscheme github_light_default")
+					set_telescope_highlights_for_light()
+				end,
+			})
+			require("auto-dark-mode").init()
+		end,
 	}
 }

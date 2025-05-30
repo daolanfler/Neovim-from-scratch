@@ -50,5 +50,7 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", conf_opts, opts)
 	end
 
-	lspconfig[server].setup(opts)
+	-- not start it, just config it, or it will open multiple lsp servers
+	-- lspconfig[server].setup(opts) 
+	vim.lsp.config(server, opts)
 end
