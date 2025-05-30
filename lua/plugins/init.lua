@@ -115,24 +115,24 @@ return {                                               -- My plugins here
 			})
 		end,
 	},
-	{
-		"f-person/auto-dark-mode.nvim",
-		lazy = false,
-		config = function()
-			require("auto-dark-mode").setup({
-				update_interval = 1000,
-				set_dark_mode = function()
-					vim.opt.background = "dark"
-					vim.cmd("colorscheme darkplus")
-					set_telescope_highlights_for_dark()
-				end,
-				set_light_mode = function()
-					vim.opt.background = "light"
-					vim.cmd("colorscheme github_light_default")
-					set_telescope_highlights_for_light()
-				end,
-			})
-			require("auto-dark-mode").init()
-		end,
-	}
+	-- {
+	-- 	"f-person/auto-dark-mode.nvim",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		require("auto-dark-mode").setup({
+	-- 			update_interval = 1000,
+	-- 			set_dark_mode = function()
+	-- 				vim.opt.background = "dark"
+	-- 				vim.cmd("colorscheme darkplus")
+	-- 				set_telescope_highlights_for_dark()
+	-- 			end,
+	-- 			set_light_mode = function()
+	-- 				vim.opt.background = "light"
+	-- 				vim.cmd("colorscheme github_light_default")
+	-- 				set_telescope_highlights_for_light()
+	-- 			end,
+	-- 		})
+	-- 		require("auto-dark-mode").init()
+	-- 	end,
+	-- }
 }
