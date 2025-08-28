@@ -1,21 +1,21 @@
 local function set_telescope_highlights_for_light()
-  vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#ffffff", fg = "#000000" })
-  vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "#ffffff", fg = "#cccccc" })
-  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#eeeeee", fg = "#000000" })
-  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "#eeeeee", fg = "#cccccc" })
-  vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#ddddee", fg = "#000000" })
+	vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#ffffff", fg = "#000000" })
+	vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "#ffffff", fg = "#cccccc" })
+	vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#eeeeee", fg = "#000000" })
+	vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "#eeeeee", fg = "#cccccc" })
+	vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#ddddee", fg = "#000000" })
 end
 
 
 local function set_telescope_highlights_for_dark()
-  vim.api.nvim_set_hl(0, "TelescopeNormal",       { bg = "#1e1e1e", fg = "#d4d4d4" })  -- 主窗口背景
-  vim.api.nvim_set_hl(0, "TelescopeBorder",       { bg = "#1e1e1e", fg = "#3f3f46" })  -- 边框
-  vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#2d2d30", fg = "#d4d4d4" })  -- 输入框背景
-  vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "#2d2d30", fg = "#3f3f46" })
-  vim.api.nvim_set_hl(0, "TelescopePromptTitle",  { fg = "#ffffff", bg = "#007acc", bold = true }) -- 标题
-  vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bg = "#007acc", bold = true })
-  vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bg = "#007acc", bold = true })
-  vim.api.nvim_set_hl(0, "TelescopeSelection",    { bg = "#264f78", fg = "#ffffff" })  -- 当前选中项
+	vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "#1e1e1e", fg = "#d4d4d4" })                  -- 主窗口背景
+	vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "#1e1e1e", fg = "#3f3f46" })                  -- 边框
+	vim.api.nvim_set_hl(0, "TelescopePromptNormal", { bg = "#2d2d30", fg = "#d4d4d4" })            -- 输入框背景
+	vim.api.nvim_set_hl(0, "TelescopePromptBorder", { bg = "#2d2d30", fg = "#3f3f46" })
+	vim.api.nvim_set_hl(0, "TelescopePromptTitle", { fg = "#ffffff", bg = "#007acc", bold = true }) -- 标题
+	vim.api.nvim_set_hl(0, "TelescopePreviewTitle", { fg = "#ffffff", bg = "#007acc", bold = true })
+	vim.api.nvim_set_hl(0, "TelescopeResultsTitle", { fg = "#ffffff", bg = "#007acc", bold = true })
+	vim.api.nvim_set_hl(0, "TelescopeSelection", { bg = "#264f78", fg = "#ffffff" })  -- 当前选中项
 end
 
 
@@ -40,6 +40,10 @@ return {                                               -- My plugins here
 	"williamboman/mason.nvim",                         -- simple to use language server installer
 	"williamboman/mason-lspconfig.nvim",
 	"tamago324/nlsp-settings.nvim",                    -- language server settings defined in json or yaml
+	{
+		"onsails/lspkind.nvim",
+		event = "VeryLazy",
+	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
