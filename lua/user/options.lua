@@ -60,16 +60,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
--- 自动将工作目录设置为打开的目录
-vim.api.nvim_create_autocmd("VimEnter", {
-	callback = function()
-		local argv = vim.fn.argv(0) -- argv 可能是数组，也可能是 string
-		if type(argv) == "string" and vim.fn.isdirectory(argv) == 1 then
-			vim.cmd('cd ' .. argv)
-		end
-	end
-})
-
 local is_wsl = vim.fn.has("wsl") == 1
 
 if is_wsl then
@@ -103,3 +93,18 @@ if is_wsl then
 		cache_enabled = 0
 	}
 end
+
+-- 禁用 netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- 如果以目录启动，自动显示 alpha
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+      require("alpha").start()
+		-- 自动将工作目录设置为打开的目录
+      vim.cmd("cd " .. vim.fn.argv(0))
+    end
+  end
+})
