@@ -5,6 +5,8 @@ return {
 		-- your configuration comes here
 		-- or leave it empty to use the default settings
 		-- refer to the configuration section below
+		triggers = {} , -- 禁用自动弹出
+
 	},
 	keys = {
 		{
