@@ -7,6 +7,7 @@ require "user.plugins"
 
 require "user.lsp"
 require "user.colorscheme"
+require "user.filetype"
 
 -- Hightlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
