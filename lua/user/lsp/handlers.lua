@@ -1,3 +1,12 @@
+---@diagnostic disable: undefined-global
+vim.api.nvim_create_user_command("Format", function()
+	local view = vim.fn.winsaveview()
+	vim.lsp.buf.format({ async = false })
+	vim.fn.winrestview(view)
+end, {
+	desc = "Format current buffer with LSP"
+})
+
 local M = {}
 
 -- TODO: backfill this to template
@@ -87,7 +96,6 @@ local function lsp_keymaps(bufnr)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "gl", ":Lspsaga show_line_diagnostics<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", ":Lspsaga diagnostic_jump_next<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-	vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({async = true})' ]]
 end
 
 M.on_attach = function(client, bufnr)
