@@ -1,4 +1,5 @@
 ---@diagnostic disable: undefined-global
+
 local options = {
 	backup = false,                       -- creates a backup file
 	-- clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
@@ -63,6 +64,34 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		fo:remove("c")
 		fo:remove("r")
 		fo:remove("o")
+	end,
+})
+
+local function auto_save_buffer(bufnr)
+	if not vim.api.nvim_buf_is_loaded(bufnr) then
+		return
+	end
+
+	local bufopts = vim.bo[bufnr]
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	if bufopts.modified and bufopts.buftype == "" and name ~= "" and not bufopts.readonly then
+		vim.api.nvim_buf_call(bufnr, function()
+			vim.cmd("silent! write")
+		end)
+	end
+end
+
+vim.api.nvim_create_autocmd("BufLeave", {
+	callback = function(args)
+		auto_save_buffer(args.buf)
+	end,
+})
+
+vim.api.nvim_create_autocmd("FocusLost", {
+	callback = function()
+		for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+			auto_save_buffer(bufnr)
+		end
 	end,
 })
 
