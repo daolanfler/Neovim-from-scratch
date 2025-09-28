@@ -1,3 +1,4 @@
+---@diagnostic disable: undefined-global
 local options = {
 	backup = false,                       -- creates a backup file
 	-- clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
@@ -11,6 +12,8 @@ local options = {
 	pumheight = 10,                       -- pop up menu height
 	showmode = false,                     -- we don't need to see things like -- INSERT -- anymore
 	showtabline = 1,                      -- only show tabline if there are more than 1 tab `:tabnew` to create tab (think it as a layout) `:tabs`
+	list = true,                          -- render boundary whitespace characters like VS Code
+	listchars = "lead:·,trail:·,tab:→ ,nbsp:␣,extends:⟩,precedes:⟨",
 	smartcase = true,                     -- smart case
 	smartindent = true,                   -- make indenting smarter again
 	splitbelow = true,                    -- force all horizontal splits to go below current window
