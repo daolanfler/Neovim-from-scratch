@@ -29,6 +29,10 @@ return {
 	config = function()
 		require("telescope").setup {
 			defaults = {
+				sorting_strategy = "ascending",
+				layout_config = {
+					prompt_position = "top"
+				},
 				mappings = {
 					i = {
 						["<C-j>"] = actions.move_selection_next,
@@ -38,15 +42,7 @@ return {
 						["<C-j>"] = actions.move_selection_next,
 						["<C-k>"] = actions.move_selection_previous,
 					}
-				}
-			},
-			pickers = {
-				find_files = {
-					sorting_strategy = "ascending",
-					layout_config = {
-						prompt_position = "top"
-					}
-				}
+				},
 			},
 			extensions = {
 				-- Your extension configuration goes here:

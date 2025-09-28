@@ -14,7 +14,8 @@ local options = {
 	showmode = false,                     -- we don't need to see things like -- INSERT -- anymore
 	showtabline = 1,                      -- only show tabline if there are more than 1 tab `:tabnew` to create tab (think it as a layout) `:tabs`
 	list = true,                          -- render boundary whitespace characters like VS Code
-	listchars = "trail:·,tab:→ ,nbsp:␣,extends:⟩,precedes:⟨",
+	-- listchars = "trail:·,tab:→ ,nbsp:␣,extends:⟩,precedes:⟨",
+	listchars = "trail:·,tab:→ ,nbsp:␣,",
 	smartcase = true,                     -- smart case
 	smartindent = true,                   -- make indenting smarter again
 	splitbelow = true,                    -- force all horizontal splits to go below current window
@@ -52,6 +53,18 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l" -- Lets the cursor wrap to the previous/next line when you move left(h) and right(l)
 vim.cmd [[set iskeyword+=-]]         -- Treats the dash character as part of a "word"
+
+-- For Markdown and plain text, keep listchars but skip leading/trailing markers
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "markdown", "text" },
+	callback = function()
+		local listchars = vim.opt.listchars:get()
+		listchars.trail = nil
+		listchars.lead = nil
+		listchars.leadmultispace = nil
+		vim.opt_local.listchars = listchars
+	end,
+})
 
 -- Attempts to stop Vim's automatic comment continuation and auto-formatting:
 -- - `c`: don't auto-wrap comments

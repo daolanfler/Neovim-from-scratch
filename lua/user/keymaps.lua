@@ -1,11 +1,53 @@
+---@diagnostic disable-next-line: undefined-global
+local vim = vim
+
 local opts = {
 	noremap = true,
 	silent = true
 }
 
+---@diagnostic disable-next-line: unused-local
 local term_opts = {
 	silent = true
 }
+
+local esc = vim.api.nvim_replace_termcodes('<ESC>', true, false, true)
+
+local comment_api
+local comment_api_notified = false
+
+local function get_comment_api()
+	if comment_api ~= nil then
+		return comment_api
+	end
+	local ok, api = pcall(require, "Comment.api")
+	if ok then
+		comment_api = api
+		return comment_api
+	end
+	if not comment_api_notified then
+		vim.notify("Comment.nvim not available", vim.log.levels.WARN, { title = "Keymaps" })
+		comment_api_notified = true
+	end
+	return nil
+end
+
+local function toggle_comment_linewise()
+	local api = get_comment_api()
+	if not api then
+		return
+	end
+	api.toggle.linewise.current()
+end
+
+local function toggle_comment_visual()
+	local api = get_comment_api()
+	if not api then
+		return
+	end
+	vim.api.nvim_feedkeys(esc, 'nx', false)
+	api.toggle.linewise(vim.fn.visualmode())
+end
 
 -- Remap space as leader key
 vim.keymap.set("", "<Space>", "<Nop>", opts)
@@ -81,5 +123,16 @@ vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- vim.keymap.set("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 -- vim.keymap.set("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- vim.keymap.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- VS Code style comment toggles
+vim.keymap.set("n", "<C-_>", toggle_comment_linewise, opts)
+vim.keymap.set("n", "<C-/>", toggle_comment_linewise, opts)
+vim.keymap.set("n", "<D-_>", toggle_comment_linewise, opts)
+vim.keymap.set("n", "<D-/>", toggle_comment_linewise, opts)
+
+vim.keymap.set("x", "<C-_>", toggle_comment_visual, opts)
+vim.keymap.set("x", "<C-/>", toggle_comment_visual, opts)
+vim.keymap.set("x", "<D-_>", toggle_comment_visual, opts)
+vim.keymap.set("x", "<D-/>", toggle_comment_visual, opts)
 
 vim.keymap.set("n", "<leader>f", ":Format<CR>", opts)
