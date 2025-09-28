@@ -23,11 +23,11 @@ local options = {
 	writebackup = false,                  -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 	expandtab = true,                     -- convert tabs to spaces
 	shiftwidth = 4,                       -- the number of spaces inserted for each indentation
-	tabstop = 4,                          -- insert 2 spaces for a tab
+	tabstop = 4,                          -- insert 4 spaces for a tab
 	cursorline = true,                    -- highlight the current line
 	number = true,                        -- set numbered lines
 	relativenumber = true,                -- set relative numbered lines
-	numberwidth = 4,                      -- set number column width to 2 {default 4}
+	numberwidth = 4,                      -- set number column width to 4 {default 4}
 	signcolumn = "yes",                   -- always show the sign column, otherwise it would shift the text each time
 	wrap = false,                         -- display lines as one long line
 	scrolloff = 8,                        -- is one of my fav
@@ -39,17 +39,20 @@ local options = {
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.keymap.set("n", '<Esc>', '<cmd>nohlsearch<CR>')
 
-vim.opt.shortmess:append "c"
-vim.opt.shortmess:append "W"
+vim.opt.shortmess:append "c" -- Suppress "match x of y" messages during completion, reducing noise in the command line while you select items from the completion menu
+vim.opt.shortmess:append "W" -- Stops the "written" confirmation message after `:w`, so saves happen silently unless there's an error.
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd "set whichwrap+=<,>,[,],h,l" -- Lets the cursor wrap to the previous/next line when you move left(h) and right(l)
+vim.cmd [[set iskeyword+=-]]         -- Treats the dash character as part of a "word"
 
+-- Attempts to stop Vim's automatic comment continuation and auto-formatting:
+-- - `c`: don't auto-wrap comments
+-- - `r`: don't keep comment leaders when you press Enter
+-- - `o`: same, when you use `o/O`
 vim.api.nvim_create_autocmd("BufEnter", {
 	pattern = "*",
 	callback = function()
@@ -63,22 +66,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 local is_wsl = vim.fn.has("wsl") == 1
 
 if is_wsl then
-	-- for wsl clipboard
-	-- or see here https://www.reddit.com/r/neovim/comments/1byy8lu/copying_to_the_windows_clipboard_from_wsl2/
-	-- 下面这个配置中文乱码
-	-- vim.g.clipboard = {
-	-- 	name = 'WslClipboard',
-	-- 	copy = {
-	-- 		["+"] = "clip.exe",
-	-- 		["*"] = "clip.exe"
-	-- 	},
-	-- 	paste = {
-	-- 		["+"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-	-- 		["*"] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))'
-	-- 	},
-	-- 	cache_enabled = 0
-	-- },
-
 	-- https://www.reddit.com/r/neovim/comments/10nfjjd/how_to_install_win32yank_for_using_neovim_with_wsl/
 	vim.g.clipboard = {
 		name = 'WslClipboard',
@@ -100,11 +87,11 @@ vim.g.loaded_netrwPlugin = 1
 
 -- 如果以目录启动，自动显示 alpha
 vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-      require("alpha").start()
-		-- 自动将工作目录设置为打开的目录
-      vim.cmd("cd " .. vim.fn.argv(0))
-    end
-  end
+	callback = function()
+		if vim.fn.argc() == 1 and vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+			require("alpha").start()
+			-- 自动将工作目录设置为打开的目录
+			vim.cmd("cd " .. vim.fn.argv(0))
+		end
+	end
 })
