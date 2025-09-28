@@ -1,4 +1,6 @@
-local actions = require "telescope.builtin"
+---@diagnostic disable-next-line: undefined-global
+local vim = vim
+local actions = require "telescope.actions"
 
 return {
 	'nvim-telescope/telescope.nvim',
@@ -17,14 +19,35 @@ return {
 			cond = function()
 				return vim.fn.executable 'make' == 1
 			end
-		}, { 'nvim-telescope/telescope-ui-select.nvim' } -- Useful for getting pretty icons, but requires special font.
+		},
+		{ 'nvim-telescope/telescope-ui-select.nvim' }, -- Useful for getting pretty icons, but requires special font.
 		--  If you already have a Nerd Font, or terminal set up with fallback fonts
 		--  you can enable this
-		-- { 'nvim-tree/nvim-web-devicons' }
+		{ 'nvim-tree/nvim-web-devicons' }
 	},
 
 	config = function()
 		require("telescope").setup {
+			defaults = {
+				mappings = {
+					i = {
+						["<C-j>"] = actions.move_selection_next,
+						["<C-k>"] = actions.move_selection_previous,
+					},
+					n = {
+						["<C-j>"] = actions.move_selection_next,
+						["<C-k>"] = actions.move_selection_previous,
+					}
+				}
+			},
+			pickers = {
+				find_files = {
+					sorting_strategy = "ascending",
+					layout_config = {
+						prompt_position = "top"
+					}
+				}
+			},
 			extensions = {
 				-- Your extension configuration goes here:
 				-- extension_name = {

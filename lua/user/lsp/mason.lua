@@ -51,6 +51,6 @@ for _, server in pairs(servers) do
 	end
 
 	-- not start it, just config it, or it will open multiple lsp servers
-	-- lspconfig[server].setup(opts) 
+	-- lspconfig[server].setup(opts)
 	vim.lsp.config(server, opts)
 end
