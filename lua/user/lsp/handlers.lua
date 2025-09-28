@@ -1,10 +1,57 @@
 ---@diagnostic disable: undefined-global
-vim.api.nvim_create_user_command("Format", function()
+
+local JQ_THRESHOLD_BYTES = 256 * 1024 -- 256 KB
+local JQ_THRESHOLD_LINES = 2000
+
+local function should_use_jq(bufnr)
+	if vim.bo[bufnr].filetype ~= "json" then
+		return false
+	end
+	if vim.fn.executable("jq") ~= 1 then
+		return false
+	end
+
+	local name = vim.api.nvim_buf_get_name(bufnr)
+	if name ~= "" then
+		local size = vim.fn.getfsize(name)
+		if size >= 0 then
+			return size >= JQ_THRESHOLD_BYTES
+		end
+	end
+
+	return vim.api.nvim_buf_line_count(bufnr) >= JQ_THRESHOLD_LINES
+end
+
+local function format_json_with_jq(bufnr)
+	local input = table.concat(vim.api.nvim_buf_get_lines(bufnr, 0, -1, false), "\n") .. "\n"
+	local output = vim.fn.systemlist({ "jq", "." }, input)
+	if vim.v.shell_error ~= 0 then
+		vim.notify(table.concat(output, "\n"), vim.log.levels.ERROR, { title = "jq format" })
+		return false
+	end
+	vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, output)
+	return true
+end
+
+local function format_with_lsp()
 	local view = vim.fn.winsaveview()
 	vim.lsp.buf.format({ async = false })
 	vim.fn.winrestview(view)
+end
+
+vim.api.nvim_create_user_command("Format", function()
+	local bufnr = vim.api.nvim_get_current_buf()
+	if should_use_jq(bufnr) then
+		local view = vim.fn.winsaveview()
+		local ok = format_json_with_jq(bufnr)
+		vim.fn.winrestview(view)
+		if ok then
+			return
+		end
+	end
+	format_with_lsp()
 end, {
-	desc = "Format current buffer with LSP"
+	desc = "Format current buffer"
 })
 
 local M = {}
