@@ -13,9 +13,6 @@ local options = {
 	pumheight = 10,                       -- pop up menu height
 	showmode = false,                     -- we don't need to see things like -- INSERT -- anymore
 	showtabline = 1,                      -- only show tabline if there are more than 1 tab `:tabnew` to create tab (think it as a layout) `:tabs`
-	list = true,                          -- render boundary whitespace characters like VS Code
-	-- listchars = "trail:·,tab:→ ,nbsp:␣,extends:⟩,precedes:⟨",
-	listchars = "trail:·,tab:→ ,nbsp:␣,", -- render 
 	smartcase = true,                     -- smart case
 	smartindent = true,                   -- make indenting smarter again
 	splitbelow = true,                    -- force all horizontal splits to go below current window
@@ -50,6 +47,11 @@ vim.opt.shortmess:append "W" -- Stops the "written" confirmation message after `
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
+
+vim.opt['list'] = true -- render boundary whitespace characters like VS Code
+-- strange if we put this in the opts table, the format mess up, because the string is too long or something ? so I soley put it here
+vim.opt['listchars'] = "trail:·,tab:→ ,nbsp:␣,"
+-- listchars = "trail:·,tab:→ ,nbsp:␣,extends:⟩,precedes:⟨",
 
 vim.cmd "set whichwrap+=<,>,[,],h,l" -- Lets the cursor wrap to the previous/next line when you move left(h) and right(l)
 vim.cmd [[set iskeyword+=-]]         -- Treats the dash character as part of a "word"
