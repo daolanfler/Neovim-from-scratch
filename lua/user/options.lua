@@ -15,7 +15,7 @@ local options = {
 	showtabline = 1,                      -- only show tabline if there are more than 1 tab `:tabnew` to create tab (think it as a layout) `:tabs`
 	list = true,                          -- render boundary whitespace characters like VS Code
 	-- listchars = "trail:·,tab:→ ,nbsp:␣,extends:⟩,precedes:⟨",
-	listchars = "trail:·,tab:→ ,nbsp:␣,",
+	listchars = "trail:·,tab:→ ,nbsp:␣,", -- render 
 	smartcase = true,                     -- smart case
 	smartindent = true,                   -- make indenting smarter again
 	splitbelow = true,                    -- force all horizontal splits to go below current window
@@ -71,6 +71,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- - `r`: don't keep comment leaders when you press Enter
 -- - `o`: same, when you use `o/O`
 vim.api.nvim_create_autocmd("BufEnter", {
+
 	pattern = "*",
 	callback = function()
 		local fo = vim.opt_local.formatoptions
