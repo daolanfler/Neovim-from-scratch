@@ -65,6 +65,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		listchars.lead = nil
 		listchars.leadmultispace = nil
 		vim.opt_local.listchars = listchars
+		-- for markdown we wrap
+		vim.opt_local.wrap = true
 	end,
 })
 
