@@ -56,17 +56,55 @@ vim.opt['listchars'] = "trail:·,tab:→ ,nbsp:␣,"
 vim.cmd "set whichwrap+=<,>,[,],h,l" -- Lets the cursor wrap to the previous/next line when you move left(h) and right(l)
 vim.cmd [[set iskeyword+=-]]         -- Treats the dash character as part of a "word"
 
--- For Markdown and plain text, keep listchars but skip leading/trailing markers
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "markdown", "text" },
+local text_wrap_group = vim.api.nvim_create_augroup("UserTextWrap", { clear = true })
+
+local function set_wrap_for_unknown_ft()
+	vim.opt_local.wrap = true
+end
+
+local function set_style_for_markdown_text()
+	local listchars = vim.opt.listchars:get()
+	listchars.trail = nil
+	listchars.lead = nil
+	listchars.leadmultispace = nil
+	vim.opt_local.listchars = listchars
+	vim.opt_local.wrap = true
+end
+
+local function reset_style_to_defaults()
+	vim.opt_local.listchars = vim.opt.listchars:get()
+	vim.opt_local.wrap = vim.opt.wrap:get() -- your global default (false)
+end
+
+-- If a buffer has no detected filetype yet (often unnamed/new buffers), default to wrap=true.
+-- Once a real filetype is set, we reset wrap back to the global default (wrap=false),
+-- except for markdown/text where we keep wrap enabled.
+vim.api.nvim_create_autocmd({ "BufWinEnter", "BufEnter" }, {
+	group = text_wrap_group,
+	pattern = "*",
 	callback = function()
-		local listchars = vim.opt.listchars:get()
-		listchars.trail = nil
-		listchars.lead = nil
-		listchars.leadmultispace = nil
-		vim.opt_local.listchars = listchars
-		-- for markdown we wrap
-		vim.opt_local.wrap = true
+		if vim.bo.buftype ~= "" then
+			return
+		end
+		if vim.bo.filetype == "" then
+			set_wrap_for_unknown_ft()
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	group = text_wrap_group,
+	pattern = "*",
+	callback = function()
+		if vim.bo.buftype ~= "" then
+			return
+		end
+		local ft = vim.bo.filetype
+		if ft == "markdown" or ft == "text" then
+			set_style_for_markdown_text()
+		else
+			reset_style_to_defaults()
+		end
 	end,
 })
 
