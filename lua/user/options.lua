@@ -60,6 +60,7 @@ local text_wrap_group = vim.api.nvim_create_augroup("UserTextWrap", { clear = tr
 
 local function set_wrap_for_unknown_ft()
 	vim.opt_local.wrap = true
+	vim.opt_local.linebreak = true
 end
 
 local function set_style_for_markdown_text()
@@ -69,11 +70,13 @@ local function set_style_for_markdown_text()
 	listchars.leadmultispace = nil
 	vim.opt_local.listchars = listchars
 	vim.opt_local.wrap = true
+	vim.opt_local.linebreak = true
 end
 
 local function reset_style_to_defaults()
 	vim.opt_local.listchars = vim.opt.listchars:get()
 	vim.opt_local.wrap = vim.opt.wrap:get() -- your global default (false)
+	vim.opt_local.linebreak = vim.opt.linebreak:get()
 end
 
 -- If a buffer has no detected filetype yet (often unnamed/new buffers), default to wrap=true.

@@ -136,3 +136,4 @@ vim.keymap.set("x", "<D-_>", toggle_comment_visual, opts)
 vim.keymap.set("x", "<D-/>", toggle_comment_visual, opts)
 
 vim.keymap.set("n", "<leader>f", ":Format<CR>", opts)
+vim.keymap.set("i", "<C-l>", "<C-o>$", { noremap = true, silent = true })
