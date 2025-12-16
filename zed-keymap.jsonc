@@ -1,0 +1,94 @@
+[
+    // @see: https://zed.dev/docs/vim#custom-key-bindings
+    {
+        "context": "Editor && VimControl && !VimWaiting && !menu",
+        "bindings": {
+            // normal & visual mode
+            "space": ["workspace::SendKeystrokes", "leader"],
+            "leader y": ["workspace::SendKeystrokes", "\" * y"],
+            "leader Y": ["workspace::SendKeystrokes", "\" * Y"],
+
+            // goes to void register
+            "leader c": ["workspace::SendKeystrokes", "\" _ c"],
+            "leader d": ["workspace::SendKeystrokes", "\" _ d"],
+            "leader x": ["workspace::SendKeystrokes", "\" _ x"],
+            "leader s": ["workspace::SendKeystrokes", "\" _ s"],
+            "leader C": ["workspace::SendKeystrokes", "\" _ C"],
+            "leader D": ["workspace::SendKeystrokes", "\" _ D"],
+            "leader X": ["workspace::SendKeystrokes", "\" _ X"],
+            "leader S": ["workspace::SendKeystrokes", "\" _ S"]
+        }
+    },
+    {
+        "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+        "bindings": {
+            // normal mode
+            "leader f": "editor::Format",
+            "H": "pane::ActivatePreviousItem",
+            "L": "pane::ActivateNextItem",
+            "leader e": "workspace::ToggleLeftDock",
+            // leader c, send to the black hole register
+            "leader c": ["workspace::SendKeystrokes", "\" _ c"],
+            "leader L": "pane::SplitAndMoveRight",
+            "leader H": "pane::SplitAndMoveLeft",
+            "g r": "editor::FindAllReferences",
+            // this is bad experience if your line doesn't wrap
+            // "j": ["workspace::SendKeystrokes", "g j"],
+            // "k": ["workspace::SendKeystrokes", "g k"]
+            "Y": ["workspace::SendKeystrokes", "y $"],
+            "leader p": [
+                "workspace::SendKeystrokes",
+                "\" _ c w ctrl-r 0 escape"
+            ]
+        }
+    },
+    {
+        "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+        "bindings": {
+            // visual, visual line & visual block modes
+            "shift-s": "vim::PushAddSurrounds",
+            "leader p": ["workspace::SendKeystrokes", "\" _ c ctrl-r 0 escape"]
+        }
+    },
+    {
+        "context": "Editor && vim_mode == insert",
+        "bindings": {
+            // put key-bindings here if you want them to work in insert mode
+            // Just try use the deault ctrl + C as zed doesn't work very well
+            // with Chinese input method if we set below shortcuts. Hanzi whose
+            // pinyin starts with j can not be input to screen
+            // https://github.com/zed-industries/zed/discussions/6661
+            "j k": "vim::NormalBefore"
+        }
+    },
+
+    // FYI https://zed.dev/docs/key-bindings#remapping-keys
+    {
+        "context": "Picker > Editor",
+        "bindings": {
+            "ctrl-k": "menu::SelectPrevious",
+            "ctrl-j": "menu::SelectNext",
+            "cmd-k": "menu::SelectPrevious",
+            "cmd-j": "menu::SelectNext"
+        }
+    },
+    {
+        // https://github.com/zed-industries/zed/discussions/14621
+        "context": "Editor && (showing_code_actions || showing_completions)",
+        "bindings": {
+            // "shift-tab": "editor::ContextMenuPrev",
+            // "tab": "editor::ContextMenuNext",
+            "ctrl-k": "editor::ContextMenuPrevious", // in vim, it's ctrl-p
+            "ctrl-j": "editor::ContextMenuNext", // in vim, it's ctrl-n
+            "pageup": "editor::ContextMenuFirst",
+            "pagedown": "editor::ContextMenuLast"
+        }
+    },
+    {
+        // "context": "!Terminal",
+        "bindings": {
+            "ctrl-l": ["workspace::SendKeystrokes", "ctrl-w l"],
+            "ctrl-h": ["workspace::SendKeystrokes", "ctrl-w h"]
+        }
+    }
+]
