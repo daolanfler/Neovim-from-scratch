@@ -10,6 +10,19 @@ return {
 			return vim.fn.winwidth(0) > 80
 		end
 
+		-- lualine accepts a function here and re-evaluates it on ColorScheme /
+		-- OptionSet background, so the statusline follows the theme switches
+		-- made in `lua/user/colorscheme.lua`.
+		local theme = function()
+			if vim.o.background ~= "light" then
+				return "gruvbox"
+			end
+			local ok, latte = pcall(function()
+				return require("catppuccin.utils.lualine")("latte")
+			end)
+			return ok and latte or "onelight"
+		end
+
 		local diagnostics = {
 			"diagnostics",
 			sources = { "nvim_diagnostic" },
@@ -75,7 +88,7 @@ return {
 		lualine.setup({
 			options = {
 				icons_enabled = true,
-				theme = "gruvbox",
+				theme = theme,
 				component_separators = {
 					left = "",
 					right = ""
