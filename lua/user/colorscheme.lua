@@ -12,6 +12,35 @@ local group = vim.api.nvim_create_augroup("UserAutoTheme", { clear = true })
 
 local current = nil
 
+-- Last background we saw. Painted before the terminal answers the OSC 11 query,
+-- so a light session does not flash the dark theme on startup.
+local cache_file = vim.fn.stdpath("state") .. "/appearance"
+local cached = nil
+
+--- @return "dark"|"light"|nil
+local function read_cached_mode()
+	local f = io.open(cache_file, "r")
+	if not f then
+		return nil
+	end
+	local mode = f:read("*l")
+	f:close()
+	if mode == "dark" or mode == "light" then
+		return mode
+	end
+	return nil
+end
+
+--- @param mode "dark"|"light"
+local function write_cached_mode(mode)
+	local f = io.open(cache_file, "w")
+	if not f then
+		return
+	end
+	f:write(mode, "\n")
+	f:close()
+end
+
 -- Extra highlights applied on top of whichever colorscheme is active
 local function apply_overrides()
 	vim.api.nvim_set_hl(0, "Normal", {
@@ -67,6 +96,11 @@ function M.apply(mode)
 
 	current = mode
 	apply_overrides()
+
+	if cached ~= mode then
+		cached = mode
+		write_cached_mode(mode)
+	end
 end
 
 --- @return "dark"|"light"|nil
@@ -107,9 +141,11 @@ local function mode_from_osc11(sequence)
 	return luminance < 0.5 and "dark" or "light"
 end
 
--- Start dark (the theme used so far); the terminal's answer below corrects it
--- within the first few milliseconds of startup.
-M.apply("dark")
+-- Start from the last mode we detected so a light terminal shows the light
+-- theme right away; the terminal's answer below corrects it if it changed
+-- while Neovim was not running.
+cached = read_cached_mode()
+M.apply(cached or "dark")
 
 vim.api.nvim_create_autocmd("TermResponse", {
 	group = group,
